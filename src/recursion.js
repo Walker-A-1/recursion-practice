@@ -5,17 +5,50 @@
 // Example:  5! = 5 x 4 x 3 x 2 x 1 = 120
 // factorial(5);  // 120
 var factorial = function(n) {
- 
+  //edge case
+  //if n is negetive return null
+  if(n < 0) {
+    return null;
+  }
+  //Base Case
+  //when n equals 1 return 1
+  if (n === 0) {
+    return 1;
+  }
+  //Recursion
+  //return: n multiplied by: call itself with n - 1
+  return n * factorial(n - 1);
 };
 
 // 2. Compute the sum of an array of integers.
 // Example:  sum([1, 2, 3, 4, 5, 6]);  // 21
-var sum = function(array) {
-};
+var sum = function(array, start = 0) {
+  //base
+  //if array length is 0 return start
+  if (array.length === 0) {
+    return start;
+  }
+  //code
+  //add first element in array to start
+  start += array[0];
+  //recursion
+  //return: call itself with array without first element, and new start value
+  return sum(array.slice(1), start);
+};//////////////I believe I was meant to ignore this one. Have not double checked
 
 // 3. Sum all numbers in an array containing nested arrays.
 // Example: arraySum([1,[2,3],[[4]],5]); // 15
-var arraySum = function(array) {
+var arraySum = function(array, seed = 0) {
+  //base case
+  //stop when <array>s length is equal to 0
+    
+    //then return se
+  //edge case
+
+  //code
+
+  //recursion
+
 };
 
 // 4. Check if a number is even.
