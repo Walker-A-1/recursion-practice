@@ -146,24 +146,94 @@ var exponent = function(base, exp) {
   //code
 
   //recursion 
+  //check if the exponent is negetive
+  if(exp < 0) {
+    //if so make <exp> positive 
+    exp *= - 1;
+    //and, do below but divide 1 by the original answer
+    //to divide one by the original answer I had to surround the answer in quotes so the division arithmatic
+    //did not effect the answer until I wanted it too (at the end).
   //param difference: exp with one less
-  return base * exponent(base, exp - 1);
+  return 1 / (base * exponent(base, exp - 1));
+  } else {
+  //if exponent is positive then 
+    //param difference: exp with one less
+    return base * exponent(base, exp - 1);
+  }
 };
-
 // 8. Determine if a number is a power of two.
 // powerOfTwo(1); // true
 // powerOfTwo(16); // true
 // powerOfTwo(10); // false
 var powerOfTwo = function(n) {
+  //edge case
+  //if n is 1 
+  if(n === 1) {
+    //return true;
+    return true;
+  }
+  //base case
+  //n is 2 
+  if(n === 2) {
+    //return true
+    return true;
+  }
+  //else if n less than 1
+  if(n < 1) {
+    //return false
+    return false;
+  }
+  //code
+
+  //recursion
+  //return
+  //call difference: divide n by 2
+  return powerOfTwo(n / 2);
 };
 
 // 9. Write a function that accepts a string a reverses it.
-var reverse = function(string) {
+var reverse = function(string, result = '') {
+  //edge case
+
+  //base case
+  //if string is empty 
+  if(!string.length) {
+    //return result
+    return result;
+  }
+  //code
+  //add the first character from string to the beginning of result
+  result = string[0] + result;
+  //recursion
+  //return statement
+  //call difference: string without first character, add result
+  return reverse(string.slice(1), result);
 };
 
 // 10. Write a function that determines if a string is a palindrome.
-var palindrome = function(string) {
+var palindrome = function(string, result = '', index = 0) {
+  //edge case
+
+  //base case
+  //if index is larger than or equal to string length
+  if(result.length === string.length) {
+    //return statement
+    //if string is equal to result return true. otherwise false
+    if(string === result) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  //code
+  //add the <index> character from string of result
+  result = string[index] + result; 
+  //recursion
+  //return statement
+  //call difference: string, add result, plus one to index
+  return palindrome(string, result, index + 1);
 };
+console.log(palindrome('wala'))
 
 // 11. Write a function that returns the remainder of x divided by y without using the
 // modulo (%) operator.
