@@ -219,7 +219,7 @@ var palindrome = function(string, result = '', index = 0) {
   if(result.length === string.length) {
     //return statement
     //if string is equal to result return true. otherwise false
-    if(string === result) {
+    if(string.toUpperCase().replaceAll(" ", '') === result.toUpperCase().replaceAll(" ", '')) {
       return true;
     } else {
       return false;
@@ -233,7 +233,6 @@ var palindrome = function(string, result = '', index = 0) {
   //call difference: string, add result, plus one to index
   return palindrome(string, result, index + 1);
 };
-console.log(palindrome('wala'))
 
 // 11. Write a function that returns the remainder of x divided by y without using the
 // modulo (%) operator.
