@@ -246,7 +246,23 @@ var modulo = function(x, y) {
 // 12. Write a function that multiplies two numbers without using the * operator  or
 // JavaScript's Math object.
 // ATTENTION DO NOT LEAVE COMMENTS IN THIS FUNCTION. The test is looking for any ('/').
+//base case
+//if y equals 1 
+  //then return x
+
+//recursion
+//return statement
+//x + below
+//call difference: x, y minus one
 var multiply = function(x, y) {
+  if(y < 0 && x < 0) {
+    y = -y;
+    x = -x;
+  }
+if(y <= 1) {
+  return x;
+}
+return x + multiply(x, y - 1)
 };
 
 // 13. Write a function that divides two numbers without using the / operator  or
@@ -268,14 +284,48 @@ var gcd = function(x, y) {
 // compareStr('house', 'houses') // false
 // compareStr('', '') // true
 // compareStr('tomato', 'tomato') // true
-var compareStr = function(str1, str2) {
+var compareStr = function(str1, str2, step = 0) {
+  //edge case
+  //if both strings are empty return true
+  if(str1 === '' && str2 === '') {
+    return true;
+  }
+  //base case
+  //if we are on the last character AND they match:
+  if(step === str1.length - 1 && step === str2.length - 1 && str1[step] === str2[step]) {
+    //then return true
+    return true;
+  }
+  //if the current two characters are not the same:
+  if(str1[step] !== str2[step]) {
+    //return false
+    return false;
+  }
+  //code
+
+  //recursion
+  //return statement
+  //function call difference: increment <step> by 1
+  return compareStr(str1, str2, step + 1);
 };
 
 // 16. Write a function that accepts a string and creates an array where each letter
 // occupies an index of the array.
-var createArray = function(str){
+var createArray = function(str, array = [], step = 0){
+  //base case
+  //if <str> length equals <array> length
+  if(str.length === step) {
+    //return array
+    return array;
+  }
+  //code
+  //add fist element of <str> to <array>
+  array.push(str[step]);
+  //recursion
+  //return statement
+  //function call difference: increment <step> by one
+  return createArray(str, array, step + 1);
 };
-
 // 17. Reverse the order of an array
 var reverseArr = function (array) {
 };
