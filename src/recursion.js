@@ -528,15 +528,25 @@ var flatten = function(arrays) {
 var letterTally = function(str, obj = {}) {
   //base case
   //if <str> is empty, return obj
-
+  if(!str.length) {
+    return obj;
+  }
   //code
-  //is first character in <str> also in <obj>
-
-    //
+  //is first character in <str> also a property in <obj>
+  console.log(obj[str[0]])
+  if(obj[str[0]]) {
+    //if yes then add one to current <obj> property
+    obj[str[0]] += 1;
+  } else {
+    //else create a tally property for this letter
+    //initialized with 1
+    obj[str[0]] = 1;
+  }
   //recursion
-
+  //return
+  //callback difference: remove first character from <str>
+  return letterTally(str.slice(1), obj);
 };
-console.log();
 // 31. Eliminate consecutive duplicates in a list.  If the list contains repeated
 // elements they should be replaced with a single copy of the element. The order of the
 // elements should not be changed.
