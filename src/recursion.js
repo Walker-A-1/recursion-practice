@@ -327,19 +327,61 @@ var createArray = function(str, array = [], step = 0){
   return createArray(str, array, step + 1);
 };
 // 17. Reverse the order of an array
-var reverseArr = function (array) {
+var reverseArr = function (array, result = []) {
+  //base case
+  //if <array> is empty
+  if(!array.length) {
+    //return <result>
+    return result;
+  }
+  //code
+  //add first element of <array> to the beginning of <result>
+  result.unshift(array[0]);
+  //recursion
+  //return
+  //function call difference: remove first element from <array>
+  return reverseArr(array.slice(1), result);
 };
 
 // 18. Create a new array with a given value and length.
 // buildList(0,5) // [0,0,0,0,0]
 // buildList(7,3) // [7,7,7]
-var buildList = function(value, length) {
+var buildList = function(value, length, result = []) {
+  //base case
+  //if <result> length is equal to <length>
+  if(result.length === length) {
+    //return result
+    return result;
+  }
+  //code
+  //add <value> to <result>
+  result.push(value);
+  //recursion
+  //return statement
+  //function call difference: add result
+  return buildList(value, length, result);
 };
 
 // 19. Count the occurence of a value inside a list.
 // countOccurrence([2,7,4,4,1,4], 4) // 3
 // countOccurrence([2,'banana',4,4,1,'banana'], 'banana') // 2
-var countOccurrence = function(array, value) {
+var countOccurrence = function(array, value, num = 0) {
+  //base case
+  //if <array> is empty
+  if(!array.length) {
+    //then return <num>
+    return num;
+  }
+  //code
+  //if first item in <array> is equal to <value>
+  if(array[0] === value) {
+    //then add one to <num>
+    num += 1;
+  }
+  //recursion
+  //return statement
+  //function call difference: remove first item from <array>, add num
+  return countOccurrence(array.slice(1), value, num);
 };
 
 // 20. Write a recursive version of map.
