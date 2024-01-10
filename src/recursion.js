@@ -387,7 +387,19 @@ var countOccurrence = function(array, value, num = 0) {
 // 20. Write a recursive version of map.
 // rMap([1,2,3], timesTwo); // [2,4,6]
 var rMap = function(array, callback, output=[]) {
-  
+  //base case
+  //if <array> is empty then return output
+  if(!array.length) {
+    return output;
+  }
+  //code
+  //pass first item in <array> to the callback function
+  //add abouve result to output
+  output.push(callback(array[0]));
+  //recursion
+  //return
+  //callback difference: take out first item in <array>
+  return rMap(array.slice(1), callback, output);
 };
 
 // 21. Write a function that counts the number of times a key occurs in an object.
@@ -422,19 +434,77 @@ var fibonacci = function(n) {
 // nthFibo(5); // 5
 // nthFibo(7); // 13
 // nthFibo(3); // 2
-var nthFibo = function(n) {
+var nthFibo = function(n, current = 1, prevNum = 0, step = 1) {
+  //edge case
+  //if n is negetive return null
+  if(n < 0) {
+    return null
+  }
+  //if n is 0 return 0
+  if(n === 0) {
+    return 0;
+  }
+  //base case
+  //if <step> is the same as <n>
+  if(step === n) {
+    //then return <current>
+    return current;
+  }
+  //code
+
+  //recursion
+  //return 
+  //callback difference: 
+  //n,
+  //current is <current> plus <prevNum>,
+  //prevNum is <current>
+  //add 1 to step
+  return nthFibo(n, current + prevNum, current, step + 1);
 };
 
 // 26. Given an array of words, return a new array containing each word capitalized.
 // var words = ['i', 'am', 'learning', 'recursion'];
 // capitalizedWords(words); // ['I', 'AM', 'LEARNING', 'RECURSION']
-var capitalizeWords = function(input) {
+var capitalizeWords = function(input, result = []) {
+  //edge case
+
+  //base case
+  //if <input> is empty, return <result>
+  if(!input.length) {
+    return result;
+  }
+  //code
+  //take first item in <input> then
+  //capitalize it then
+  //add it to <result>
+  result.push(input[0].toUpperCase());
+  //recursion
+  //return
+  //callback difference: remove first item from <input>
+  return capitalizeWords(input.slice(1), result);
 };
 
 // 27. Given an array of strings, capitalize the first letter of each index.
 // capitalizeFirst(['car', 'poop', 'banana']); // ['Car', 'Poop', 'Banana']
-var capitalizeFirst = function(array) {
-};
+var capitalizeFirst = function(input, result = []) {
+  //edge case
+
+  //base case
+  //if <input> is empty, return <result>
+  if(!input.length) {
+    return result;
+  }
+  //code
+  //take first item in <input> then
+  //capitalize just the first letter
+  //combine with rest of word
+  //add it to <result>
+  result.push(input[0].slice(0, 1).toUpperCase() + input[0].slice(1));
+  //recursion
+  //return
+  //callback difference: remove first item from <input>
+  return capitalizeFirst(input.slice(1), result);
+};//This is like my third time making this, pls forgive me for copy pasting
 
 // 28. Return the sum of all even numbers in an object containing nested objects.
 // var obj1 = {
@@ -455,9 +525,18 @@ var flatten = function(arrays) {
 
 // 30. Given a string, return an object containing tallies of each letter.
 // letterTally('potato'); // {'p':1, 'o':2, 't':2, 'a':1}
-var letterTally = function(str, obj) {
-};
+var letterTally = function(str, obj = {}) {
+  //base case
+  //if <str> is empty, return obj
 
+  //code
+  //is first character in <str> also in <obj>
+
+    //
+  //recursion
+
+};
+console.log();
 // 31. Eliminate consecutive duplicates in a list.  If the list contains repeated
 // elements they should be replaced with a single copy of the element. The order of the
 // elements should not be changed.
