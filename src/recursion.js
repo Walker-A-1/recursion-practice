@@ -652,16 +652,46 @@ var alternateSign = function(array, result = []) {//since we are taking item fro
 // 35. Given a string, return a string with digits converted to their word equivalent.
 // Assume all numbers are single digits (less than 10).
 // numToText("I have 5 dogs and 6 ponies"); // "I have five dogs and six ponies"
-var numToText = function(str) {
+var numToText = function(str, arr = str.split(' '), result = []) {
   //base case
-  //if <str> does not include a digit then stop
-
+  //stop when arr is empty
+  if(!arr.length) {
+    return result.join(' ');
+  }
   //code
-  //check if <str> includes a digit
-
-  //replace that digit with its string value
+  //check if first element in arr is NOT a number
+  if(String(Number(arr[0])) === 'NaN') {
+    //if not a number
+    //just add it to <result>
+    result.push(arr[0]);
+    //if it is a number 
+      //then check which number it is and replace it with the appropriate string
+  } else if (arr[0] === '0') {
+    result.push('zero');
+  } else if (arr[0] === '1') {
+    result.push('one');
+  } else if (arr[0] === '2') {
+    result.push('two');
+  } else if (arr[0] === '3') {
+    result.push('three');
+  } else if (arr[0] === '4') {
+    result.push('four');
+  } else if (arr[0] === '5') {
+    result.push('five');
+  } else if (arr[0] === '6') {
+    result.push('six');
+  } else if (arr[0] === '7') {
+    result.push('seven');
+  } else if (arr[0] === '8') {
+    result.push('eight');
+  } else if (arr[0] === '9') {
+    result.push('nine');
+  }
+  //recursion 
+  //callback: remove first element from arr
+  return numToText(str, arr.slice(1), result);
 };
-
+console.log();
 // *** EXTRA CREDIT ***
 
 // 36. Return the number of times a tag occurs in the DOM.
