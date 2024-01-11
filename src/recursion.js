@@ -533,7 +533,6 @@ var letterTally = function(str, obj = {}) {
   }
   //code
   //is first character in <str> also a property in <obj>
-  console.log(obj[str[0]])
   if(obj[str[0]]) {
     //if yes then add one to current <obj> property
     obj[str[0]] += 1;
@@ -552,32 +551,115 @@ var letterTally = function(str, obj = {}) {
 // elements should not be changed.
 // Example: compress([1, 2, 2, 3, 4, 4, 5, 5, 5]) // [1, 2, 3, 4, 5]
 // Example: compress([1, 2, 2, 3, 4, 4, 2, 5, 5, 5, 4, 4]) // [1, 2, 3, 4, 2, 5, 4]
-var compress = function(list) {
+var compress = function(list, result = []) {
+  //base case
+  //stop when <list> is empty
+  if(!list.length) {
+    return result;
+  }
+  //code 
+  //if the first element in <list> is NOT equal to the last element in <result>
+  if(list[0] !== result[result.length - 1]) {
+    //then add first element <list> to <result>
+    result.push(list[0]);
+  }
+  //recursion
+  //return
+  //callback difference: remove first element from <list>,
+  //add result
+  return compress(list.slice(1), result);
 };
 
 // 32. Augment every element in a list with a new value where each element is an array
 // itself.
 // Example: augmentElements([[],[3],[7]], 5); // [[5],[3,5],[7,5]]
-var augmentElements = function(array, aug) {
+var augmentElements = function(array, aug, result = []) {
+  //edge case 
+  //remove eccess zeros
+
+  //base case
+  //stop when <array> is empty
+  if(!array.length) {
+    return result;
+  }
+  //code 
+  //add the first item in <array> to <result> 
+  result.push(array[0]);
+  //add <aug> to that 
+  result[result.length - 1].push(aug);
+  //recursion
+  //return
+  //callback difference: remove first item form <array>,
+  //add result
+  return augmentElements(array.slice(1), aug, result);
 };
 
 // 33. Reduce a series of zeroes to a single 0.
 // minimizeZeroes([2,0,0,0,1,4]) // [2,0,1,4]
 // minimizeZeroes([2,0,0,0,1,0,0,4]) // [2,0,1,0,4]
-var minimizeZeroes = function(array) {
+var minimizeZeroes = function(array, result = []) {
+  //base case
+  //stop when <array> is empty
+  if(!array.length) {
+    return result;
+  }
+  //code
+  //if the first element in <array> is NOT zero AND,
+  //the last element in <result> is NOT zero then
+  if(array[0] !== 0 || result[result.length - 1] !== 0) {
+    //add the first element in <array> to <result>
+    result.push(array[0]);
+  }
+  //recursion
+  //return
+  //callback difference:
+  //remove first item from <array>,
+  //add result
+  return minimizeZeroes(array.slice(1), result);
 };
 
 // 34. Alternate the numbers in an array between positive and negative regardless of
 // their original sign.  The first number in the index always needs to be positive.
 // alternateSign([2,7,8,3,1,4]) // [2,-7,8,-3,1,-4]
 // alternateSign([-2,-7,8,3,-1,4]) // [2,-7,8,-3,1,-4]
-var alternateSign = function(array) {
+//all odd numbers must be positive 
+//and all even numbers must be negetive
+var alternateSign = function(array, result = []) {//since we are taking item from <array> and adding it to <result>. the isEven logic will be flipped
+  //base case
+  //stop when <array> is empty
+  if(!array.length) {
+    return result;
+  }
+  //code
+  //check if result is even
+  if(result.length % 2 === 0) {
+    //if even then
+    //make the first item in <array> positive,
+    //then add it to <result>
+    result.push(array[0] > 0 ? array[0] : -array[0]);
+  } else {
+    //if odd then
+    //make the first iten in <array> negetive,
+    //then add it to <result>
+    result.push(array[0] < 0 ? array[0] : -array[0]);
+  }
+  //recursion
+  //return statement
+  //param: array minus first item + result
+  return alternateSign(array.slice(1), result);
 };
 
 // 35. Given a string, return a string with digits converted to their word equivalent.
 // Assume all numbers are single digits (less than 10).
 // numToText("I have 5 dogs and 6 ponies"); // "I have five dogs and six ponies"
 var numToText = function(str) {
+  //base case
+  //if <str> does not include a digit then stop
+
+  //code
+  //check if <str> includes a digit
+
+  //replace that digit with its string value
 };
 
 // *** EXTRA CREDIT ***
